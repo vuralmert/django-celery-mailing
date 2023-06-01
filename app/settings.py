@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mail_task',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +81,25 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Celery Settings
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+CELERY_RESULT_BACKEND = 'django-db'
+
+# SMTP Settings
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "vural.mvce@gmail.com"
+EMAIL_HOST_PASSWORD = "fpzcmdvywoxmifch"
+DEFAULT_FROM_EMAIL = 'Celery <vural.mvce@gmail.com>'
 
 
 # Password validation
