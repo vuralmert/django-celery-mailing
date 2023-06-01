@@ -11,6 +11,9 @@ app.conf.enable_utc = True
 app.config_from_object(settings, namespace='CELERY')
 
 # Celery Beat Settings
+app.conf.beat_schedule = {
+
+}
 
 app.autodiscover_tasks()
 
